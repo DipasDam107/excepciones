@@ -14,7 +14,30 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner teclado;
+    static _MasterMind2 master;
+    static resultado2 resu;
     public static void main(String [] args){
+        String numero;
+        master = new _MasterMind2();
         teclado = new Scanner(System.in);
+        do{
+            try{
+            
+                System.out.println("Dime Numero: ");
+                numero=teclado.nextLine();
+                resu = master.comprobar(numero);
+                master.pintarConsola();
+
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+         }while(resu == null || (!resu.sinMasTurnos && !resu.gano));
+        
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("-------------------------------");
+        System.out.println("SE ACABA EL JUEGO");
+        if(resu.gano) System.out.println("HAS GANADO");
+        else if(resu.sinMasTurnos) System.out.println("HAS AGOTADO LOS INTENTOS");
+        System.out.println("-------------------------------");
     }
 }

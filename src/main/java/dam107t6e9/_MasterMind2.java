@@ -18,14 +18,17 @@ _MasterMind2 () {
     listaIntentos = new ArrayList <>();
 }    
 
-public resultado2 comprobar (String i){
+public resultado2 comprobar (String i) throws valoresRepetidosExcepcion, tamanioIncorrectoExcepcion, valoresInvalidosExcepcion{
     int b=0, m=0; boolean gano=false, finTurnos=false;
-    if (CadenaConDuplicados(i) || i.length()!= TAM_NUMERO)  
-        return new resultado2 (i, -1,-1, false,false);
+    if(CadenaConDuplicados(i)) throw new valoresRepetidosExcepcion();
+    if(i.length()!= TAM_NUMERO) throw new tamanioIncorrectoExcepcion();
     for (int cont=0; cont <i.length(); cont++) {
          char letra=i.charAt(cont);
-         if (letra==secreto.charAt(cont)) b++;
-         else if (secreto.indexOf(letra)!=-1) m++;
+         if(Character.isDigit(letra)){
+            if (letra==secreto.charAt(cont)) b++;
+            else if (secreto.indexOf(letra)!=-1) m++;
+         }
+         else throw new valoresInvalidosExcepcion();
         }
     if (b==TAM_NUMERO) gano=true;
     if (++this.numIntento==MAX_INTENTOS) finTurnos=true;
