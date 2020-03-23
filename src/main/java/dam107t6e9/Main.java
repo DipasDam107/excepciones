@@ -25,9 +25,16 @@ public class Main {
             
                 System.out.println("Dime Numero: ");
                 numero=teclado.nextLine();
+                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                 resu = master.comprobar(numero);
                 master.pintarConsola();
 
+            }catch(tamanioIncorrectoExcepcion e){
+                System.out.println(e.getMessage());
+            }catch(valoresInvalidosExcepcion e){
+                System.out.println(e.getMessage());
+            }catch(valoresRepetidosExcepcion e){
+                System.out.println(e.getMessage());
             }catch(Exception e){
                 e.printStackTrace();
             }
